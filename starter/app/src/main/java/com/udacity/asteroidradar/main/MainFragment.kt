@@ -26,6 +26,8 @@ class MainFragment : Fragment() {
 
     private var viewModelAdapter: AsteroidAdapter? = null
 
+    private var errorSnackbar: Snackbar? = null
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.asteroids.observe(viewLifecycleOwner, Observer<List<Asteroid>> { asteroids ->
@@ -54,9 +56,14 @@ class MainFragment : Fragment() {
 
         viewModel.status.observe(viewLifecycleOwner, Observer { status ->
             if(status == AsteroidRepository.Status.ERROR) {
-                Snackbar.make(binding.root, R.string.api_error, Snackbar.LENGTH_INDEFINITE).setAction(R.string.try_again, View.OnClickListener {
-                    viewModel.refresh()
-                }).show()
+                if (errorSnackbar == null) {
+                    errorSnackbar =
+                        Snackbar.make(binding.root, R.string.api_error, Snackbar.LENGTH_INDEFINITE)
+                            .setAction(R.string.try_again, View.OnClickListener {
+                                viewModel.refresh()
+                            })
+                }
+                errorSnackbar?.show()
             }
         })
 

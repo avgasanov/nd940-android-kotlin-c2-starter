@@ -23,7 +23,7 @@ class AsteroidAdapter(val clickListener: AsteroidListener) : ListAdapter<Asteroi
         adapterScope.launch {
             withContext(Dispatchers.Main) {
                 submitList(list)
-                Log.v("QQQQ", "list size: ${list?.size ?: 0}")
+                Log.v("AsteroidAdapter", "list size: ${list?.size ?: 0}")
             }
         }
     }

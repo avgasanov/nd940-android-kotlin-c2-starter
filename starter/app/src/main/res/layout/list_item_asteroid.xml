@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="kotlin.jvm.internal.StringCompanionObject" />
         <variable
             name="asteroid"
             type="com.udacity.asteroidradar.Asteroid" />
@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/vertical_guide_normal"
             android:text="@{asteroid.codename}"
+            android:contentDescription="@{String.format(@string/codename_desc, asteroid.codename)}"
             android:textColor="@color/default_text_color"
             app:layout_constraintBottom_toTopOf="@+id/asteroid_date"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -42,6 +43,7 @@
             android:layout_marginTop="@dimen/horizontal_guide_normal"
             android:layout_marginBottom="@dimen/horizontal_guide_normal"
             android:text="@{asteroid.closeApproachDate}"
+            android:contentDescription="@{String.format(@string/close_approach_date_desc, asteroid.closeApproachDate)}"
             android:textColor="@color/text_grey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

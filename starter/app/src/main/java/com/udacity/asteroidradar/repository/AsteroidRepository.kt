@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.AsteroidsApplication
+import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.database.AsteroidsDatabase
 import com.udacity.asteroidradar.database.asDomainModel
 import com.udacity.asteroidradar.network.API_DATE_FORMAT
@@ -39,7 +40,8 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
     val pictureOfDay: LiveData<String>
         get() = _pictureOfDay
 
-    private val _pictureOfDayDesc = MutableLiveData<String>()
+    private val _pictureOfDayDesc = MutableLiveData<String>(
+        AsteroidsApplication.INSTANCE.getString(R.string.no_picture))
     val pictureOfDayDesc: LiveData<String>
         get() = _pictureOfDayDesc
 
@@ -98,7 +100,8 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
             }
         }
         _pictureOfDay.value = sharedPreferences.getString(PICTURE_OF_THE_DAY, null)
-        _pictureOfDayDesc.value = sharedPreferences.getString(PICTURE_OF_THE_DAY_DESC, null)
+        _pictureOfDayDesc.value = sharedPreferences.getString(PICTURE_OF_THE_DAY_DESC, null) ?:
+                AsteroidsApplication.INSTANCE.getString(R.string.no_picture)
         _status.value = Status.LOADING_COMPLETED
     }
 
