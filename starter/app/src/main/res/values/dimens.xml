@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="list_item_image_width">64dp</dimen>
+    <dimen name="list_item_image_height">60dp</dimen>
+    <dimen name="vertical_guide_normal">16dp</dimen>
+    <dimen name="horizontal_guide_normal">8dp</dimen>
+</resources>
